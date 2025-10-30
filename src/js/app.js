@@ -4,16 +4,16 @@ const API_BASE_URL = "https://www.omdbapi.com/";
 const searchInputField = document.getElementById("searchInput");
 const clearSearchButton = document.getElementById("clearSearchButton");
 const searchFeedbackMessage = document.getElementById(
-  "searchContainerFeedbackMessage"
+  "searchMoviesContainerFeedbackMessage"
 );
 
-let debounceTimer;
+let delayTimer;
 let currentRequest = null;
 
 function debounce(func, delay) {
   return function (...args) {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => func.apply(this, args), delay);
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(() => func.apply(this, args), delay);
   };
 }
 
@@ -37,26 +37,28 @@ async function handleMovieSearch(query) {
     const data = await response.json();
 
     if (data.Response === "True") {
-      renderMovieResults(data.Search);
+      renderMovieAndSeriesResults(data.Search);
     } else {
-      renderSearchErrorMessage(data.Error || "No movies found");
+      renderSearchMoviesErrorMessage(data.Error || "No movies found");
     }
   } catch (error) {
     if (error.name !== "AbortError") {
-      renderSearchErrorMessage("Failed to fetch movies. Please try again.");
+      renderSearchMoviesErrorMessage(
+        "Failed to fetch movies. Please try again."
+      );
     }
   } finally {
     currentRequest = null;
   }
 }
 
-function renderMovieResults(movies) {
+function renderMovieAndSeriesResults(movies) {
   if (!Array.isArray(movies) || movies.length === 0) {
     displaySearchPlaceholder();
     return;
   }
 
-  const moviesCardsHTML = movies
+  const moviesAndSeriesCardsHTML = movies
     .map(
       (movie, index) => `
         <div 
@@ -84,12 +86,12 @@ function renderMovieResults(movies) {
     )
     .join("");
 
-  searchFeedbackMessage.innerHTML = `<div class="movies-grid">${moviesCardsHTML}</div>`;
+  searchFeedbackMessage.innerHTML = `<div class="movies-grid">${moviesAndSeriesCardsHTML}</div>`;
 
-  initializeMovieCardInteractions();
+  initializeMovieAndSerieCardInteractions();
 }
 
-function initializeMovieCardInteractions() {
+function initializeMovieAndSerieCardInteractions() {
   const moviesGrid = document.querySelector(".movies-grid");
   if (!moviesGrid) return;
 
@@ -104,9 +106,9 @@ function initializeMovieCardInteractions() {
     const details = card.querySelector(".movie-details");
 
     if (event.type === "mouseenter" && details.classList.contains("hidden")) {
-      await fetchMovieDetails(card, details);
+      await fetchMovieAndSerieDetails(card, details);
     } else if (event.type === "mouseleave") {
-      hideMovieDetails(card, details);
+      hideMovieAndSerieDetails(card, details);
     }
   }
 
@@ -118,14 +120,14 @@ function initializeMovieCardInteractions() {
     event.stopPropagation();
 
     if (details.classList.contains("hidden")) {
-      fetchMovieDetails(card, details);
+      fetchMovieAndSerieDetails(card, details);
     } else {
-      hideMovieDetails(card, details);
+      hideMovieAndSerieDetails(card, details);
     }
   }
 }
 
-async function fetchMovieDetails(card, detailsContainer) {
+async function fetchMovieAndSerieDetails(card, detailsContainer) {
   const imdbID = card.dataset.imdbid;
 
   try {
@@ -149,7 +151,7 @@ async function fetchMovieDetails(card, detailsContainer) {
   }
 }
 
-function hideMovieDetails(card, detailsContainer) {
+function hideMovieAndSerieDetails(card, detailsContainer) {
   detailsContainer.classList.add("hidden");
   card.classList.remove("expanded");
 }
@@ -174,7 +176,9 @@ function renderSearchLoading() {
   `;
 }
 
-function renderSearchErrorMessage(message = "An unexpected error occurred.") {
+function renderSearchMoviesErrorMessage(
+  message = "An unexpected error occurred."
+) {
   if (!searchFeedbackMessage) return;
 
   const safeMessage = message.replace(/[<>]/g, "");
