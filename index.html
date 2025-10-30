@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🎬 Busca Instantânea de Filmes e Séries (OMDB)</title>
 
+    <link rel="stylesheet" href="/src/css/styles.css" />
     <link rel="stylesheet" href="/src/css/global.css" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +20,46 @@
   </head>
   <body>
     <header>
-      <h1>🎬 Busca Instantânea de Filmes e Séries (OMDB)</h1>
+      <nav class="navbar" aria-label="Navbar">
+        <div class="navebar__container">
+          <div class="navbar__content">
+            <div class="navbar__left">
+              <div class="profile-pic-wrapper">
+                <span>🎬</span>
+              </div>
+              <a href="/" class="nav-logo"> OMDB Search </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="badge-check"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="url(#gradient)"
+                width="48"
+                height="48"
+              >
+                <defs>
+                  <linearGradient
+                    id="gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="var(--accent)" />
+                    <stop offset="100%" stop-color="#ff6b9d" />
+                  </linearGradient>
+                </defs>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2l4-4m6 2a9 9 0 11-18 0a9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
   </body>
 </html>
