@@ -61,5 +61,46 @@
         </div>
       </nav>
     </header>
+    <section class="main-section" aria-label="Main navigation">
+      <header>
+        <h1>🎬 Encontre filmes e séries instantaneamente</h1>
+        <p class="subtitle">
+          Use a busca abaixo para encontrar informações sobre seus filmes e
+          séries favoritos em tempo real.
+        </p>
+      </header>
+
+      <main class="main-section__container">
+        <div class="main-section__content--search">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Pesquise filmes ou séries..."
+            autocomplete="off"
+            aria-label="Pesquisar filmes e séries"
+          />
+          <svg
+            class="search-icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+
+          <button
+            class="clear-button"
+            id="clearSearchButton"
+            aria-label="Clear search Button"
+          >
+            ×
+          </button>
+        </div>
+      </main>
+    </section>
   </body>
 </html>
