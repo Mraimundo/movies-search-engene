@@ -34,7 +34,7 @@ O objetivo do Movie and Serie Search Engene é permitir que usuários pesquisem 
 
 ## Print do projeto final (screenshots)
 
-<img width="1900" height="846" alt="Image" src="https://github.com/user-attachments/assets/65d8232e-62e1-4b41-bdfe-5c6c55afbc70" />
+<img width="1900" height="846" alt="Image" src="https://github.com/user-attachments/assets/23c3d9da-1787-4d56-9ea5-34901e27445c" />
 
 <hr/>
 
