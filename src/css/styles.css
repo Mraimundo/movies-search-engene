@@ -162,6 +162,29 @@ h1 {
   transform: rotate(90deg);
 }
 
+.search-feedback--container {
+  text-align: center;
+  padding: 80px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+.search-feedback__icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.search-feedback--container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-light);
+}
+
+.search-feedback--container p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
 .footer-container {
   text-align: center;
   padding: 20px;
