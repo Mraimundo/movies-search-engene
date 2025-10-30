@@ -162,6 +162,31 @@ h1 {
   transform: rotate(90deg);
 }
 
+.footer-container {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  border-top: 1px solid var(--text-gray);
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  header {
+    margin-bottom: 30px;
+  }
+
+  .main-section__container {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
