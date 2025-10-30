@@ -37,10 +37,14 @@ async function handleMovieSearch(query) {
     const data = await response.json();
 
     if (data.Response === "True") {
+      renderMovieResults(data.Search);
     } else {
-      console.log(data.Error);
+      renderSearchErrorMessage(data.Error || "No movies found");
     }
   } catch (error) {
+    if (error.name !== "AbortError") {
+      renderSearchErrorMessage("Failed to fetch movies. Please try again.");
+    }
   } finally {
     currentRequest = null;
   }
@@ -158,6 +162,31 @@ function displaySearchPlaceholder() {
             <p>Digite o nome de um filme ou série para começar</p>
         </div>
     `;
+}
+
+function renderSearchLoading() {
+  if (!searchFeedbackMessage) return;
+  searchFeedbackMessage.innerHTML = `
+    <div class="loading-state" role="status" aria-live="polite">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <p class="loading-text">Pesquisando...</p>
+    </div>
+  `;
+}
+
+function renderSearchErrorMessage(message = "An unexpected error occurred.") {
+  if (!searchFeedbackMessage) return;
+
+  const safeMessage = message.replace(/[<>]/g, "");
+
+  searchFeedbackMessage.innerHTML = `
+    <div class="error-message">
+      <strong>⚠️ ${safeMessage}</strong>
+    </div>
+    <div class="error-message__subggestion">
+      <p>Tente pesquisar outra coisa</p>
+    </div>
+  `;
 }
 
 searchInputField.addEventListener(
