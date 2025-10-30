@@ -40,7 +40,7 @@ O objetivo do Movie and Serie Search Engene é permitir que usuários pesquisem 
 
 # Deploy da Aplicação :dash:
 
-> <a href="https://movie-search-engene.netlify.app/" target='_blank'>Link do deploy da aplicação<a/>
+> <a href="https://movie-serie-search-engene.netlify.app/" target='_blank'>Link do deploy da aplicação<a/>
 
 <hr/>
 
