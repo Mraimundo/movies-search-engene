@@ -90,6 +90,12 @@ h1 {
   background-clip: text;
 }
 
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
 .subtitle {
   color: var(--text-light);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
